@@ -187,7 +187,7 @@ func TestHelp( t *testing.T ) {
 
 func TestSection( t *testing.T ) {
 
-	var op *option
+	var op *Option
 
 	// Setup test table
 	section_tests := []x_tst{

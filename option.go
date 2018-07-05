@@ -72,7 +72,7 @@ type opt struct {
 	placeholder		string				// value placeholder
 }
 
-type option struct {
+type Option struct {
 	vmap			map[string]int
 	vdata			[]vst
 	optionList		[]opt					// contains all options defined in supplied struct
@@ -105,11 +105,11 @@ func init () {
 
 // Create a new option object struct.
 //
-func New( v2 ...interface{} ) (*option,error) {
+func New( v2 ...interface{} ) (*Option,error) {
 	if len(v2) == 0 || len(v2) > 2 {
 		panic("expected one or two arguments")
 	}
-	o := &option{}
+	o := &Option{}
 	o.cmd = getCmd()
 	o.dochead = make(map[string][]string)
 	o.vmap = make(map[string]int)
@@ -126,7 +126,7 @@ func New( v2 ...interface{} ) (*option,error) {
 }
 
 // calculate a limit for the number of arguments to be read from os.Args
-func (o *option) calcArgLimit (v2 []interface{}) {
+func (o *Option) calcArgLimit (v2 []interface{}) {
 	for _,vi := range v2 {
 		v := reflect.ValueOf(vi)
 		if v.Kind() != reflect.Ptr {
@@ -152,13 +152,13 @@ func (o *option) calcArgLimit (v2 []interface{}) {
 }
 
 // Returns the path of this executable (os.Args[0])
-func (o *option) Cmd() string {
+func (o *Option) Cmd() string {
 	return os.Args[0]
 }
 
 // Assign command line options and arguments to option struct and arg slice
 // By the way, getOptions must be called before getArgs you will get the wrong args.
-func (o *option) varAssign( v2 []interface{} ) error {
+func (o *Option) varAssign( v2 []interface{} ) error {
 	for i,vi := range v2 {
 		v := reflect.ValueOf(vi).Elem()
 		switch v.Kind() {
@@ -206,7 +206,7 @@ func (o *option) varAssign( v2 []interface{} ) error {
 	return nil
 }
 
-func (o *option) getArgs() ([]string, error) {
+func (o *Option) getArgs() ([]string, error) {
 	var args []string
 	count := 0
 	// scan the vdata array looking for unassigned arguments
@@ -223,14 +223,14 @@ func (o *option) getArgs() ([]string, error) {
 	return args, nil
 }
 
-func (o *option) setSlice(args []string) error {
+func (o *Option) setSlice(args []string) error {
 	v := o.argSliceRef
 	newv := reflect.MakeSlice(v.Type(), len(args), len(args))
 	v.Set(newv)
 	return o.setArray(args)
 }
 
-func (o *option) setArray(args []string) error {
+func (o *Option) setArray(args []string) error {
 	v := o.argSliceRef
 	for i := 0; i < len(args); i++ {
 //		if i >= v.Cap() {
@@ -245,11 +245,11 @@ func (o *option) setArray(args []string) error {
 
 
 // HasArgs will return true if any flag, option or argument was supplied.
-func (o *option) HasArgs () bool {
+func (o *Option) HasArgs () bool {
 	return len(os.Args) > 1
 }
 
-func (o *option) checkUndefinedOptions () error {
+func (o *Option) checkUndefinedOptions () error {
 	var xtra []string
 	for _,v := range o.vdata {
 		if v.key != "" && (v.typ != typ_flag && v.typ != typ_option) {
@@ -267,7 +267,7 @@ func (o *option) checkUndefinedOptions () error {
 	return errors.New(msg)
 }
 
-func (o *option) parse() {
+func (o *Option) parse() {
 	_lastkey := ""
 	for i,arg := range os.Args {
 		if i == 0 {
@@ -320,7 +320,7 @@ func (o *option) parse() {
 }
 
 // generate option list. check data types while we are here.
-func (o *option) genoptionList(v reflect.Value) {
+func (o *Option) genoptionList(v reflect.Value) {
 	for n, nf := 0, v.NumField(); n < nf; n++ {
 		fld := v.Field(n)
 		//Note: better way?
@@ -345,7 +345,7 @@ func (o *option) genoptionList(v reflect.Value) {
 }
 
 // assign all of the options to our struct
-func (o *option) getOptions(v reflect.Value) error {
+func (o *Option) getOptions(v reflect.Value) error {
 	for _,x := range o.optionList {
 		fld := x.fld
 		u_key := x.u_key
@@ -381,7 +381,7 @@ func (o *option) getOptions(v reflect.Value) error {
 
 // if struct tag is defined, parse it for u_key, gnu_key, help text and value placeholder
 // if not, create them.
-func (o *option) createKeyNames(name, typ, tag string) (u_key, gnu_key, placeholder, help string) {
+func (o *Option) createKeyNames(name, typ, tag string) (u_key, gnu_key, placeholder, help string) {
 	placeholder = typ
 	if tag == "" {
 		u_key, gnu_key = o.autoKeys(name)
@@ -425,7 +425,7 @@ func (o *option) createKeyNames(name, typ, tag string) (u_key, gnu_key, placehol
 }
 
 // return error if key was already used
-func (o *option) keyCheck(u_key, gnu_key string) error {
+func (o *Option) keyCheck(u_key, gnu_key string) error {
 	if u_key != "" {
 		if _,ok := o.keys[u_key]; !ok {
 			o.keys[u_key] = true
@@ -444,7 +444,7 @@ func (o *option) keyCheck(u_key, gnu_key string) error {
 }
 
 // Create key names from name
-func (o *option) autoKeys(name string) (u_key, gnu_key string) {
+func (o *Option) autoKeys(name string) (u_key, gnu_key string) {
 	u_key = toLower(name[0:1])
 	gnu_key = strings.Replace(toLower(camelToSnake(name)), "_", "-", -1)
 	// check if u_key already exists

@@ -12,7 +12,7 @@ import (
 )
 
 // The following example shows a simple option definition
-func xExampleNew() {
+func ExampleNew() {
 
 	// Set command line arguments for testing
 	oldArgs := os.Args
@@ -51,7 +51,7 @@ func xExampleNew() {
 }
 
 // The following example shows a simple option definition
-func ExampleOpt_Help() {
+func ExampleOption_Help() {
 
 	// Set command line arguments for testing
 	oldArgs := os.Args
@@ -91,7 +91,7 @@ func ExampleOpt_Help() {
 }
 
 // Defining struct tags will allow you to add help text or optionally change key names.
-func ExampleOpt_Help_tags() {
+func ExampleOption_Help_tags() {
 
 	// Set command line arguments for testing
 	oldArgs := os.Args
@@ -129,7 +129,7 @@ func ExampleOpt_Help_tags() {
 }
 
 // Add sections to help text
-func ExampleOpt_Section() {
+func ExampleOption_Section() {
 
 	// Set command line arguments for testing
 	oldArgs := os.Args

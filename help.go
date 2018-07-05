@@ -26,13 +26,13 @@ func init () {
 	indent2_str = strings.Repeat(" ", indent2)
 }
 
-// Help
-func (o *option) Help() {
+// Print the entire help text for this option configuration.
+func (o *Option) Help() {
 	fmt.Print(o.HelpString())
 }
 
-// HelpString
-func (o *option) HelpString() string {
+// Return the entire help text for this option configuration as a string.
+func (o *Option) HelpString() string {
 	var str string
 	if _,ok := o.dochead["SYNOPSIS"]; !ok {
 		o.dochead["SYNOPSIS"] = []string{o.usageString()}
@@ -65,8 +65,8 @@ func (o *option) HelpString() string {
 	return strings.TrimRight(str,"\n")+"\n\n"
 }
 
-
-func (o *option) Section(heading string, paragraph ...string) {
+// Add section heading and paragraphs to your help text
+func (o *Option) Section(heading string, paragraph ...string) {
 	var zero_ptr *opt
 	if heading == "NAME" || heading == "SYNOPSIS" || heading == "DESCRIPTION" {
 		o.dochead[heading] = paragraph
@@ -89,7 +89,7 @@ func (o *option) Section(heading string, paragraph ...string) {
 	}
 }
 
-func (o *option) optionString (i int, v hp) string {
+func (o *Option) optionString (i int, v hp) string {
 	var text string
 	text += indent1_str
 	if v.opt_ptr.u_key != "" {
@@ -153,7 +153,8 @@ func sectionString(heading string, pa []string) string {
 	return heading + paragraphs
 }
 
-func (o *option) Usage() {
+// Print the usage text for this command
+func (o *Option) Usage() {
 	usage := o.usageString()
 	for _,v := range o.help {
 		h := ""
@@ -173,7 +174,7 @@ func (o *option) Usage() {
 	fmt.Print("Usage: "+usage+"\n")
 }
 
-func (o *option) usageString() string {
+func (o *Option) usageString() string {
 	usage := o.cmd
 	if o.opt_count == 1 {
 		usage += " [OPTION]"
@@ -196,7 +197,7 @@ func (o *option) usageString() string {
 	return usage
 }
 
-//func (o *option) usageString() string {
+//func (o *Option) usageString() string {
 //	usage := o.cmd
 //	if o.opt_count > 0 {
 //		usage += " [OPTION]"
