@@ -24,16 +24,4 @@ this cap, an error will be returned.  Alternatively, a fixed array may be
 defined.  This will cause the parser to expect an exact number of aguments,
 or return an error.
 
-## <a name="pkg-index">Index</a>
-* [type Option](#Option)
-  * [func New(v2 ...interface{}) (*Option, error)](#New)
-  * [func (o *Option) Cmd() string](#Option.Cmd)
-  * [func (o *Option) HasArgs() bool](#Option.HasArgs)
-  * [func (o *Option) Help()](#Option.Help)
-  * [func (o *Option) HelpString() string](#Option.HelpString)
-  * [func (o *Option) Section(heading string, paragraph ...string)](#Option.Section)
-  * [func (o *Option) Usage()](#Option.Usage)
-
-#### <a name="pkg-files">Package files</a>
-[decode.go](/src/github.com/mkmueller/option/decode.go) [help.go](/src/github.com/mkmueller/option/help.go) [option.go](/src/github.com/mkmueller/option/option.go)
 
