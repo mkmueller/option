@@ -1,14 +1,10 @@
 [![GoDoc](https://godoc.org/github.com/mkmueller/option?status.svg)](https://godoc.org/github.com/mkmueller/option)
-[![MarkMueller](https://img.shields.io/badge/tests-passed-00cc00.svg)]
-[![MarkMueller](https://img.shields.io/badge/coverage-100%25-orange.svg)]
+[![MarkMueller](https://img.shields.io/badge/tests-passed-00cc00.svg)](#)
+[![MarkMueller](https://img.shields.io/badge/coverage-100%25-orange.svg)](#)
 
 # option
 `import "github.com/mkmueller/option"`
 
-* [Overview](#pkg-overview)
-* [Index](#pkg-index)
-
-## <a name="pkg-overview">Overview</a>
 Package option is a command line option and argument parser that will
 populate a given struct, argument slice, or both.  Unix-style keys as well as
 gnu-style long keywords are accepted.  Command line keys are automatically
