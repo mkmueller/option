@@ -1,11 +1,12 @@
-
+[![GoDoc](https://godoc.org/github.com/mkmueller/option?status.svg)](https://godoc.org/github.com/mkmueller/option)
+[![MarkMueller](https://img.shields.io/badge/tests-passed-00cc00.svg)]
+[![MarkMueller](https://img.shields.io/badge/coverage-100%25-orange.svg)]
 
 # option
 `import "github.com/mkmueller/option"`
 
 * [Overview](#pkg-overview)
 * [Index](#pkg-index)
-* [Examples](#pkg-examples)
 
 ## <a name="pkg-overview">Overview</a>
 Package option is a command line option and argument parser that will
@@ -23,9 +24,6 @@ this cap, an error will be returned.  Alternatively, a fixed array may be
 defined.  This will cause the parser to expect an exact number of aguments,
 or return an error.
 
-
-
-
 ## <a name="pkg-index">Index</a>
 * [type Option](#Option)
   * [func New(v2 ...interface{}) (*Option, error)](#New)
@@ -36,19 +34,8 @@ or return an error.
   * [func (o *Option) Section(heading string, paragraph ...string)](#Option.Section)
   * [func (o *Option) Usage()](#Option.Usage)
 
-#### <a name="pkg-examples">Examples</a>
-* [New](#example_New)
-* [Option.Help](#example_Option_Help)
-* [Option.Help (Tags)](#example_Option_Help_tags)
-* [Option.Section](#example_Option_Section)
-
 #### <a name="pkg-files">Package files</a>
-[decode.go](/src/github.com/mkmueller/option/decode.go) [help.go](/src/github.com/mkmueller/option/help.go) [option.go](/src/github.com/mkmueller/option/option.go) 
-
-
-
-
-
+[decode.go](/src/github.com/mkmueller/option/decode.go) [help.go](/src/github.com/mkmueller/option/help.go) [option.go](/src/github.com/mkmueller/option/option.go)
 
 ## <a name="Option">type</a> [Option](/src/target/option.go?s=2349:2899#L75)
 ``` go
@@ -58,18 +45,11 @@ type Option struct {
 ```
 
 
-
-
-
-
 ### <a name="New">func</a> [New](/src/target/option.go?s=3258:3303#L108)
 ``` go
 func New(v2 ...interface{}) (*Option, error)
 ```
 Create a new option object struct.
-
-
-
 
 
 ### <a name="Option.Cmd">func</a> (\*Option) [Cmd](/src/target/option.go?s=4349:4378#L155)
@@ -79,15 +59,11 @@ func (o *Option) Cmd() string
 Returns the path of this executable (os.Args[0])
 
 
-
-
 ### <a name="Option.HasArgs">func</a> (\*Option) [HasArgs](/src/target/option.go?s=6435:6467#L248)
 ``` go
 func (o *Option) HasArgs() bool
 ```
 HasArgs will return true if any flag, option or argument was supplied.
-
-
 
 
 ### <a name="Option.Help">func</a> (\*Option) [Help](/src/target/help.go?s=488:511#L30)
@@ -97,15 +73,11 @@ func (o *Option) Help()
 Print the entire help text for this option configuration.
 
 
-
-
 ### <a name="Option.HelpString">func</a> (\*Option) [HelpString](/src/target/help.go?s=618:654#L35)
 ``` go
 func (o *Option) HelpString() string
 ```
 Return the entire help text for this option configuration as a string.
-
-
 
 
 ### <a name="Option.Section">func</a> (\*Option) [Section](/src/target/help.go?s=1449:1510#L69)
@@ -115,19 +87,11 @@ func (o *Option) Section(heading string, paragraph ...string)
 Add section heading and paragraphs to your help text
 
 
-
-
 ### <a name="Option.Usage">func</a> (\*Option) [Usage](/src/target/help.go?s=3659:3683#L157)
 ``` go
 func (o *Option) Usage()
 ```
 Print the usage text for this command
-
-
-
-
-
-
 
 
 - - -
