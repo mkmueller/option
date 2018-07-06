@@ -1,8 +1,9 @@
+## <a name="option"></a>
 [![GoDoc](https://godoc.org/github.com/mkmueller/option?status.svg)](https://godoc.org/github.com/mkmueller/option)
-![MarkMueller](https://img.shields.io/badge/tests-passed-00cc00.svg)
-![MarkMueller](https://img.shields.io/badge/coverage-100%25-orange.svg)
+[![MarkMueller](https://img.shields.io/badge/tests-passed-00cc00.svg)](#option)
+[![MarkMueller](https://img.shields.io/badge/coverage-100%25-orange.svg)](#option)
 
-# option
+
 `import "github.com/mkmueller/option"`
 
 Package option is a command line option and argument parser that will
